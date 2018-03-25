@@ -2,6 +2,8 @@ from gmplot import gmplot
 import gmaps
 import googlemaps
 
+from flask import Flask, request, render_template
+
 class ListGardens:
     def __init__(self):
         self.dict_garden = {}
@@ -48,7 +50,7 @@ class User:
             print("Username already taken")
             return
         self.name = name
-
+        self.password = ""
         self.actual_name = ""
         self.gardensowned = {}
         self.gardensmember = {}
@@ -89,7 +91,6 @@ class User:
         #      print("You do not own that garden")
 
     def add_garden(self, garden):  # Use this for garden creation,
-        print("Ran")
         self.gardensowned[garden.name] = garden
         # if (garden not in self.gardensowned):
         #  self.gardensowned.append(garden)
@@ -125,7 +126,7 @@ class User:
         member_of = list(self.gardensmember.keys()) #List of all gardens member of
         rating = str(self.rating.total_rating)
         rating_count = str(self.rating.num_ratings)
-
+        return [name,garden_owned,member_of,rating,rating_count]
     def display(self):
         display_string = ""
         for key in self.gardensowned:
@@ -245,7 +246,6 @@ def draw_map(address):
     for result in results:
         geo = result['geometry']
         lat, lng = float(geo['location']['lat']), float(geo['location']['lng'])
-        print("Lat:", lat,"Long:",lng)
 
     gmap = gmplot.GoogleMapPlotter(lat,lng, 16)
 
@@ -268,7 +268,6 @@ Joe.create_garden("Prospect Park")
 Joe.create_garden("Joe's Garden")
 Joe.display()
 Bob.join_garden(Joe.gardensowned["Joe's Garden"])
-print(Bob.gardensmember["Joe's Garden"].name)
 Bob.leave_garden("Joe's Garden")
 garde_boy = get_garden_data("Joe's Garden")
 
@@ -293,10 +292,30 @@ garde_boy.add_location("Building 92 Brooklyn New York")
 
 
 Joe.create_garden("Ave D")
-
+Joe.join_garden(get_garden_data("Prospect Park"))
 garde_boy = get_garden_data("Ave D")
 
 garde_boy.add_location("Brooklyn Heights Promenade Brooklyn New York")
 
 draw_map("2 Metrotech Brooklyn")
 print(Joe.rating.total_rating,Joe.rating.num_ratings)
+
+app = Flask(__name__)
+
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+@app.route('/login')
+def loginPage():
+    return render_template('LoginPage.html')
+
+@app.route('/member/<user>')
+def memberprof(user):
+    member = get_user_data(user)
+    user_info = member.everything()
+    return render_template('Member_Activities.html',name = user_info[0],owned = user_info[1][0], member = user_info[2][0],rating = "7",rating_count = "4")
+if __name__=="__main__":
+    app.run()
+    
+print("RAN")
