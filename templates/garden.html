@@ -15,16 +15,14 @@ and open the template in the editor.
     </head>
     <body>
         <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">Garden Exchange Network</a>
-                </div>
-                <ul class="nav navbar-nav">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="LoginPage.html">Member Activities</a></li>
-                    <li class="active"><a href="#">Your Garden</a></li>
-                    <li><a href="map.html">Community Garden Map</a></li>
-                </ul>
+            <div>
+                <p>Welcome to the {{name}} garden!</p>
+                <p> This garden is owned by: {{owned}}</p>
+                <p> This garden currently has {{produce1}},{{produce2}},{{produce3}}</p>
+                <p>This garden currently has {{membercount}} members </p>
+                <p>This garden is located at {{address}}</p>
+                <p> {{rating}} / 10 </p>
+                <p>{{rating_count}} ratings</p>
             </div>
         </nav>
 
