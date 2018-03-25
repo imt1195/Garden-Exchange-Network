@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>Member Activities</title>
+        <title>Member Profile</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -23,7 +23,7 @@ and open the template in the editor.
                 </div>
                 <ul class="nav navbar-nav">
                     <li><a href="index.html">Home</a></li>
-                    <li class="active"><a href="#">Member Activities</a></li>
+                    <li class="active"><a href="#">Member Profile</a></li>
                     <li><a href="map.html">Community Garden Map</a></li>
                 </ul>
             </div>  
@@ -31,6 +31,13 @@ and open the template in the editor.
         
         <div>
             <h2>Welcome to the Garden Exchange Network</h2>
+        </div>
+        <div>
+            <p>Welcome back {{name}}</p>
+            <p> Your currently own: {{owned}}</p>
+            <p> You are currently a member of {{member}}</p>
+            <p> {{rating}} / 10 </p>
+            <p>{{rating_count}} ratings</p>
         </div>
     </body>
 </html>
