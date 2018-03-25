@@ -6,26 +6,40 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>? Garden Exchange ?</title>
+        <title>Garden Exchange</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="MemberStyle.css">
     </head>
     <body>
         <nav class="navbar navbar-default">
-            <div>
-                <p>Welcome to the {{name}} garden!</p>
-                <p> This garden is owned by: {{owned}}</p>
-                <p> This garden currently has {{produce1}},{{produce2}},{{produce3}}</p>
-                <p>This garden currently has {{membercount}} members </p>
-                <p>This garden is located at {{address}}</p>
-                <p> {{rating}} / 10 </p>
-                <p>{{rating_count}} ratings</p>
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html"><img src="logo.png" style="height: 200%;"></a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="LoginPage.html">Member Activities</a></li>
+                    <li class="active"><a href="#">Your Garden</a></li>
+                    <li><a href="map.html">Community Garden Map</a></li>
+                </ul>
             </div>
         </nav>
 
-        
+        <div id="MemberGreeting">
+            <h2>Welcome to the Garden Exchange Network</h2>
+        </div>
+        <div id="MemberInfo">
+            <p>Welcome to the {{name}} garden!</p>
+            <p> This garden is owned by: {{owned}}</p>
+            <p> This garden currently has {{produce1}},{{produce2}},{{produce3}}</p>
+            <p>This garden currently has {{membercount}} members </p>
+            <p>This garden is located at {{address}}</p>
+            <p> {{rating}} / 10 </p>
+            <p>{{rating_count}} ratings</p>
+        </div>
     </body>
 </html>
