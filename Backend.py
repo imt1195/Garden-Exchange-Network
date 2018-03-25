@@ -197,6 +197,15 @@ def create_user(user_name):
     user = User(user_name)
     return user
 
+def user_name(user):
+    return user.getname()
+
+def get_owner_list(user):
+    return list(user.gardensowned.keys())
+
+def get_member_list(user):
+    return list(user.gardensmember.keys())
+
 def create_new_garden(owner,garden_name):
     owner.create(garden_name)
 
@@ -239,16 +248,14 @@ def draw_map(address):
         print("Lat:", lat,"Long:",lng)
 
     gmap = gmplot.GoogleMapPlotter(lat,lng, 16)
-    print ("GOOF")
+
     gmap.coloricon = "http://www.googlemapsmarkers.com/v1/%s/"
     gmap.marker(lat,lng,"red")
-    print("Cornballer")
     for garde in global_list.dict_garden:
-        print("Running")
         if(global_list.dict_garden[garde][0].address != ""):
             current_loc = global_list.dict_garden[garde][0].get_loc()
             gmap.marker(current_loc[0], current_loc[1], "#008000")
-    gmap.draw("map2.html")
+    gmap.draw("map3.html")
 
 Bob = User("Bob")
 Bob.create_garden("Avenue U")
@@ -267,6 +274,29 @@ garde_boy = get_garden_data("Joe's Garden")
 
 garde_boy.add_location("6 Metrotech  Brooklyn")
 
+garde_boy = get_garden_data("Prospect Park")
+
+garde_boy.add_location("Cadman Plaza Brooklyn ")
+
+Joe.create_garden("Ave B")
+
+garde_boy = get_garden_data("Ave B")
+
+garde_boy.add_location("Fort Greene Brooklyn New York")
+
+Joe.create_garden("Ave C")
+
+garde_boy = get_garden_data("Ave C")
+
+garde_boy.add_location("Building 92 Brooklyn New York")
+
+
+
+Joe.create_garden("Ave D")
+
+garde_boy = get_garden_data("Ave D")
+
+garde_boy.add_location("Brooklyn Heights Promenade Brooklyn New York")
 
 draw_map("2 Metrotech Brooklyn")
 print(Joe.rating.total_rating,Joe.rating.num_ratings)
